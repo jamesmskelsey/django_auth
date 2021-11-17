@@ -1,0 +1,38 @@
+{# base.html #}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>
+    {% block title %}
+    {% endblock %}
+  </title>
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+</head>
+<body>
+  <nav id="body-nav">
+    <div id="banner">
+      <div id="site-header">MYSITE</div>
+    </div>
+    <div id="menu">
+      <a href="{% url 'home' %}">Home Page</a> | 
+      <a href="{% url 'view' %}">View Page</a> |
+      <a href="{% url 'edit' %}">Edit Page</a> |
+      {% if user.is_authenticated %}
+      <a href="{% url 'logout' %}">Logout</a> |
+      {% else %}
+      <a href="{% url 'login' %}">Login or Signup</a>
+      {% endif %}
+    </div>
+  </nav>
+    
+  <main id="body-main">
+    {% block main-content %}
+    {% endblock %}
+  </main>
+    
+  <footer id="body-footer">
+
+  </footer>
+</body>
+</html>
